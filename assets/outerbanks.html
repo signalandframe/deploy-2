@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --r:#E50914;--rd:rgba(229,9,20,0.12);--rdb:rgba(229,9,20,0.06);
+  --dk:var(--color-background-primary);--s:var(--color-background-secondary);
+  --b:var(--color-border-tertiary);--t:var(--color-text-primary);
+  --m:var(--color-text-secondary);--dim:var(--color-text-tertiary);
+  --g:#16A34A;--gd:rgba(22,163,74,0.15);
+}
+body{font-family:'Bricolage Grotesque',sans-serif;color:var(--t);background:var(--color-background-primary);padding:0}
+
+/* HERO */
+.hero{background:var(--color-background-secondary);padding:48px 40px 40px;position:relative;overflow:hidden;border-bottom:1px solid var(--b)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--b) 1px,transparent 1px),linear-gradient(90deg,var(--b) 1px,transparent 1px);background-size:40px 40px;opacity:0.4}
+.hero-accent{position:absolute;top:-60px;right:-40px;width:280px;height:280px;border-radius:50%;background:var(--rd);pointer-events:none}
+.n-badge{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--r);letter-spacing:-1px;position:relative;z-index:2}
+.hero-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--r);text-transform:uppercase;margin:16px 0 10px;position:relative;z-index:2}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:0.9;letter-spacing:-1px;color:var(--t);position:relative;z-index:2}
+.hero-title span{color:var(--r)}
+.hero-sub{font-size:14px;color:var(--m);max-width:520px;line-height:1.7;margin:20px 0 32px;position:relative;z-index:2}
+.hero-meta{display:flex;gap:32px;padding-top:24px;border-top:1px solid var(--b);position:relative;z-index:2;flex-wrap:wrap}
+.meta-item{display:flex;flex-direction:column;gap:3px}
+.meta-k{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--dim);text-transform:uppercase}
+.meta-v{font-size:12px;color:var(--t);font-weight:500}
+
+/* SECTIONS */
+.section{padding:40px}
+.section+.section{border-top:1px solid var(--b)}
+.sec-hdr{display:flex;align-items:baseline;gap:16px;margin-bottom:28px}
+.sec-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--r)}
+.sec-title{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;color:var(--t)}
+.sec-rule{flex:1;height:1px;background:var(--b)}
+
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--b);margin-bottom:28px}
+.stat-card{padding:24px 20px;border-right:1px solid var(--b);background:var(--s)}
+.stat-card:last-child{border-right:none}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:var(--r)}
+.stat-l{font-size:11px;color:var(--m);line-height:1.4;margin-top:4px}
+.stat-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);margin-top:4px;letter-spacing:1px}
+
+/* PROSE */
+.prose{font-size:13px;color:var(--m);line-height:1.8;max-width:680px;margin-bottom:24px}
+.prose strong{color:var(--t);font-weight:500}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:12px}
+.tbl th{text-align:left;padding:10px 14px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--m);text-transform:uppercase;background:var(--s);border-bottom:2px solid var(--r)}
+.tbl td{padding:12px 14px;color:var(--t);border-bottom:1px solid var(--b);vertical-align:middle;line-height:1.5}
+.tbl tr:hover td{background:var(--rdb)}
+.tag{display:inline-block;padding:2px 8px;border-radius:3px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;font-weight:500}
+.tag-r{background:rgba(229,9,20,0.12);color:var(--r)}
+.tag-g{background:var(--gd);color:var(--g)}
+.tag-d{background:var(--s);color:var(--dim)}
+
+/* REACH BAR */
+.rbar{height:3px;background:var(--b);border-radius:2px;margin-top:5px}
+.rfill{height:100%;background:var(--r);border-radius:2px}
+
+/* TIMELINE */
+.timeline{margin-bottom:32px}
+.phase{display:grid;grid-template-columns:120px 20px 1fr;gap:0 20px}
+.ph-time{font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);padding:20px 0;text-align:right;line-height:1.5}
+.ph-line{display:flex;flex-direction:column;align-items:center}
+.ph-dot{width:10px;height:10px;border-radius:50%;background:var(--r);margin-top:22px;flex-shrink:0;box-shadow:0 0 8px rgba(229,9,20,0.4)}
+.ph-conn{flex:1;width:1px;background:var(--b)}
+.phase:last-child .ph-conn{display:none}
+.ph-content{padding:16px 0 28px;border-bottom:1px solid var(--b)}
+.phase:last-child .ph-content{border-bottom:none}
+.ph-name{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--t);margin-bottom:4px}
+.ph-desc{font-size:12px;color:var(--m);line-height:1.6;margin-bottom:8px}
+.ph-metric{font-family:'DM Mono',monospace;font-size:10px;color:var(--r);letter-spacing:0.5px}
+
+/* DIM CARDS */
+.dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.dim-card{border:1px solid var(--b);background:var(--s);padding:24px}
+.dim-card-hdr{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--b)}
+.dim-icon{font-size:18px}
+.dim-name{font-family:'DM Serif Display',serif;font-size:15px;font-weight:400;color:var(--t)}
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--b);gap:12px;font-size:12px}
+.mrow:last-child{border-bottom:none}
+.mname{color:var(--t)}
+.mdef{color:var(--dim);text-align:right;max-width:140px;line-height:1.4;font-size:11px}
+
+/* THUMB GRID */
+.thumb-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
+.thumb-card{border:1px solid var(--b);background:var(--s);padding:14px 12px}
+.thumb-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--r);text-transform:uppercase;margin-bottom:8px}
+.thumb-vis{height:55px;background:var(--dk);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:8px}
+.thumb-driver{font-size:11px;font-weight:500;color:var(--t);margin-bottom:4px}
+.thumb-approach{font-size:10px;color:var(--m);line-height:1.4}
+
+/* HYPOTHESIS BOX */
+.hyp{border-left:3px solid var(--r);padding:16px 20px;background:var(--rd);margin-bottom:20px;border-radius:0 4px 4px 0}
+.hyp p{font-size:13px;color:var(--t);line-height:1.6;margin-bottom:6px}
+.hyp p:last-child{margin-bottom:0;color:var(--m);font-size:12px}
+
+/* EXP CARDS */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.exp-card{border:1px solid var(--b);background:var(--s);overflow:hidden}
+.exp-hdr{padding:20px 24px;background:var(--dk);border-bottom:1px solid var(--b);display:flex;gap:12px;align-items:flex-start}
+.exp-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:var(--r);opacity:0.35;flex-shrink:0}
+.exp-title{font-family:'DM Serif Display',serif;font-size:14px;font-weight:400;color:var(--t);margin-bottom:4px;line-height:1.3}
+.exp-hypo{font-size:11px;color:var(--m);line-height:1.5}
+.exp-body{padding:20px 24px}
+.erow{display:flex;gap:12px;padding:7px 0;border-bottom:1px solid var(--b);font-size:11px}
+.erow:last-child{border-bottom:none}
+.ekey{color:var(--dim);min-width:90px;flex-shrink:0}
+.eval{color:var(--t);line-height:1.5}
+.exp-success{margin-top:14px;padding:10px 14px;background:var(--gd);border:1px solid rgba(22,163,74,0.25);font-size:11px;color:var(--g);line-height:1.5;border-radius:4px}
+
+/* INSIGHTS */
+.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--b);margin-bottom:24px}
+.insight-card{padding:24px 20px;border-right:1px solid var(--b)}
+.insight-card:last-child{border-right:none}
+.insight-n{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--r);opacity:0.12;margin-bottom:-8px}
+.insight-title{font-size:13px;font-weight:500;color:var(--t);margin-bottom:6px}
+.insight-body{font-size:11px;color:var(--m);line-height:1.6}
+
+/* SUMMARY */
+.sum-grid{border:1px solid var(--b);margin-bottom:24px}
+.sum-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--b)}
+.sum-row:last-child{border-bottom:none}
+.sum-cell{padding:14px 18px;font-size:12px;line-height:1.5;border-right:1px solid var(--b)}
+.sum-cell:last-child{border-right:none}
+.sum-cell.hdr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--m);text-transform:uppercase;background:var(--s)}
+.sum-cell.left{color:var(--t)}
+.sum-cell.right{color:var(--m)}
+.hl{color:var(--r);font-weight:500}
+
+/* FOOTER */
+.footer{padding:28px 40px;border-top:1px solid var(--b);display:flex;justify-content:space-between;align-items:center;background:var(--s)}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--dim);letter-spacing:2px}
+.foot-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;text-align:right;line-height:1.8}
+
+.h3{font-family:'DM Serif Display',serif;font-size:18px;font-weight:400;color:var(--t);margin:28px 0 14px}
+
+/* chart container */
+.chart-wrap{position:relative;width:100%;height:200px;margin-bottom:24px}
+</style>
+<style id="__theme_fix">:root{
+--color-background-primary:#0B0B0C;--color-background-secondary:#141416;
+--color-border-tertiary:rgba(255,255,255,0.12);--color-text-primary:#F5F3EF;
+--color-text-secondary:#B9B6B0;--color-text-tertiary:#7A7770;}
+html{scroll-behavior:smooth;background:#0B0B0C}</style></head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-accent"></div>
+  <div class="n-badge">N</div>
+  <div class="hero-label">Signal & Frame Studio — Work Sample</div>
+  <div class="hero-title">OUTER<br><span>BANKS</span></div>
+  <p class="hero-sub">Title Distribution, Promotion &amp; Merchandising Analysis. A performance framework for Netflix's Product Merchandising organization — covering promotional arc, self-service dashboard design, thumbnail strategy, and experimentation frameworks.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><span class="meta-k">Prepared by</span><span class="meta-v">Signal &amp; Frame</span></div>
+    <div class="meta-item"><span class="meta-k">Subject</span><span class="meta-v">Outer Banks — Netflix Original</span></div>
+    <div class="meta-item"><span class="meta-k">Application</span><span class="meta-v">Performance Associate, Product Merchandising</span></div>
+    <div class="meta-item"><span class="meta-k">Date</span><span class="meta-v">May 2026</span></div>
+  </div>
+</div>
+
+<!-- S1: TITLE OVERVIEW -->
+<div class="section">
+  <div class="sec-hdr"><span class="sec-num">01</span><h2 class="sec-title">Title Overview &amp; Distribution Context</h2><div class="sec-rule"></div></div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-n">5</div><div class="stat-l">Seasons — consistent top-10 performer in opening weeks</div><div class="stat-sub">FRANCHISE DEPTH</div></div>
+    <div class="stat-card"><div class="stat-n">30M+</div><div class="stat-l">Combined cast social reach before a single paid impression</div><div class="stat-sub">ORGANIC DISTRIBUTION</div></div>
+    <div class="stat-card"><div class="stat-n">16–24</div><div class="stat-l">Core demo age range, female-skewing, US + international</div><div class="stat-sub">TARGET SEGMENT</div></div>
+    <div class="stat-card"><div class="stat-n">147M</div><div class="stat-l">Hours viewed in first 28 days (S4) — S5 benchmark</div><div class="stat-sub">VIEWERSHIP BASELINE</div></div>
+  </div>
+
+  <p class="prose">Outer Banks represents one of Netflix's highest-value youth IP investments. For a Product Merchandising team, OBX is an ideal ongoing case study due to its <strong>predictable release cadence</strong>, <strong>high social amplification coefficient</strong>, <strong>strong international growth trajectory</strong>, and a <strong>five-season longitudinal dataset</strong> enabling trend analysis across promotional approaches and audience retention patterns.</p>
+
+  <div class="h3">Cast social distribution map</div>
+  <table class="tbl">
+    <thead><tr><th>Cast member</th><th>Platform</th><th>Reach</th><th>Content archetype</th><th>Promo value</th><th style="width:140px">Relative reach</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Chase Stokes</strong></td><td>Instagram / TikTok</td><td>12M+ IG</td><td>BTS, relationship content</td><td><span class="tag tag-r">Very High</span></td><td><div class="rbar"><div class="rfill" style="width:100%"></div></div></td></tr>
+      <tr><td><strong>Madelyn Cline</strong></td><td>Instagram / TikTok</td><td>9M+ IG</td><td>Fashion, aspirational lifestyle</td><td><span class="tag tag-r">Very High</span></td><td><div class="rbar"><div class="rfill" style="width:75%"></div></div></td></tr>
+      <tr><td><strong>Rudy Pankow</strong></td><td>Instagram</td><td>6M+ IG</td><td>Candid, fan interaction</td><td><span class="tag tag-g">High</span></td><td><div class="rbar"><div class="rfill" style="width:50%"></div></div></td></tr>
+      <tr><td><strong>Austin North</strong></td><td>Instagram / YouTube</td><td>4M+ IG</td><td>Music cross-promotion</td><td><span class="tag tag-d">Medium</span></td><td><div class="rbar"><div class="rfill" style="width:33%"></div></div></td></tr>
+      <tr><td><strong>Netflix Official</strong></td><td>TikTok / Instagram</td><td>30M+ TikTok</td><td>Clip drops, fan content, memes</td><td><span class="tag tag-r">Very High</span></td><td><div class="rbar"><div class="rfill" style="width:100%"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <div class="hyp">
+    <p><strong>Key insight:</strong> Combined organic cast reach exceeds 30M before a single paid impression is served.</p>
+    <p>Systematizing cast posting coordination — timing, format, hashtag — around the drop window would measurably increase Day-1 viewership velocity. This is currently informal; formalizing it is the opportunity.</p>
+  </div>
+</div>
+
+<!-- S2: PROMOTIONAL ARC -->
+<div class="section">
+  <div class="sec-hdr"><span class="sec-num">02</span><h2 class="sec-title">Promotional Distribution Arc</h2><div class="sec-rule"></div></div>
+  <p class="prose">Netflix's title promotion for franchise shows follows a structured five-phase arc — each with distinct promotional activity, audience intent state, and primary tracking metrics.</p>
+
+  <div class="chart-wrap">
+    <canvas id="arcChart" role="img" aria-label="Bar chart showing viewership impact across five promotional phases: Awareness, Consideration, Launch, Retention, Long Tail">Promotional arc phases: Awareness, Consideration, Launch (peak), Retention, Long Tail.</canvas>
+  </div>
+
+  <div class="timeline">
+    <div class="phase"><div class="ph-time">8–6 weeks<br>pre-drop</div><div class="ph-line"><div class="ph-dot"></div><div class="ph-conn"></div></div><div class="ph-content"><div class="ph-name">Awareness</div><div class="ph-desc">Teaser clip drops, cast social posts, Netflix social amplification. Goal: surface OBX in algorithmic feeds of lapsed and new-to-franchise viewers.</div><div class="ph-metric">→ Track: Social impressions, trailer view velocity, hashtag reach</div></div></div>
+    <div class="phase"><div class="ph-time">4–2 weeks<br>pre-drop</div><div class="ph-line"><div class="ph-dot"></div><div class="ph-conn"></div></div><div class="ph-content"><div class="ph-name">Consideration</div><div class="ph-desc">Official trailer, press junkets, cast interviews, thumbnail A/B testing begins. Members in this phase are browsing but uncommitted.</div><div class="ph-metric">→ Track: Trailer completion rate, CTR on title row, search volume lift</div></div></div>
+    <div class="phase"><div class="ph-time">Drop week</div><div class="ph-line"><div class="ph-dot"></div><div class="ph-conn"></div></div><div class="ph-content"><div class="ph-name">Launch</div><div class="ph-desc">Homepage hero placement, Top 10 feed, push notifications, email merchandising. Day-1 and Day-7 hours viewed determine Top 10 trajectory.</div><div class="ph-metric">→ Track: Day-1 hours viewed, Day-7 hours viewed, Top 10 entry speed, hero CTR</div></div></div>
+    <div class="phase"><div class="ph-time">Weeks 2–4<br>post-drop</div><div class="ph-line"><div class="ph-dot"></div><div class="ph-conn"></div></div><div class="ph-content"><div class="ph-name">Retention</div><div class="ph-desc">"Still watching" nudges, related title recommendations, fan content amplification, cast social continuity. Convert partial viewers to completers.</div><div class="ph-metric">→ Track: Week-2 retention rate, episode completion rate, re-engagement from lapsed</div></div></div>
+    <div class="phase"><div class="ph-time">Month 2+</div><div class="ph-line"><div class="ph-dot"></div><div class="ph-conn"></div></div><div class="ph-content"><div class="ph-name">Long Tail</div><div class="ph-desc">Algorithmic row placement, "Because you watched" recommendations, S1–S4 back-catalog promotion to new viewers. Franchise depth is a long-tail distribution asset.</div><div class="ph-metric">→ Track: New-to-franchise viewer rate, catalog row CTR, international market lift</div></div></div>
+  </div>
+</div>
+
+<!-- S3: DASHBOARD -->
+<div class="section">
+  <div class="sec-hdr"><span class="sec-num">03</span><h2 class="sec-title">Merchandising Performance Dashboard</h2><div class="sec-rule"></div></div>
+  <p class="prose">A proposed self-service title promotional dashboard for OBX, structured across four measurement dimensions. Designed to be replicable across any franchise title and serve both internal and cross-functional stakeholders.</p>
+
+  <div class="dim-grid">
+    <div class="dim-card">
+      <div class="dim-card-hdr"><div class="dim-icon">📊</div><div class="dim-name">Title distribution metrics</div></div>
+      <div class="mrow"><div class="mname">Top 10 entry speed</div><div class="mdef">Days to #1. Proxy for launch effectiveness.</div></div>
+      <div class="mrow"><div class="mname">Top 10 tenure</div><div class="mdef">Duration in top 10. Sustained vs. front-loaded.</div></div>
+      <div class="mrow"><div class="mname">Global vs. regional rank variance</div><div class="mdef">US vs. international by territory.</div></div>
+      <div class="mrow"><div class="mname">Hours viewed W1/W2 ratio</div><div class="mdef">Word-of-mouth momentum signal.</div></div>
+      <div class="mrow"><div class="mname">Title row CTR</div><div class="mdef">Thumbnail + copy effectiveness.</div></div>
+      <div class="mrow"><div class="mname">Trailer completion rate</div><div class="mdef">Strongest pre-watch intent signal.</div></div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-card-hdr"><div class="dim-icon">👤</div><div class="dim-name">Member behavior metrics</div></div>
+      <div class="mrow"><div class="mname">Episode completion rate</div><div class="mdef">% who start Ep1 and finish season.</div></div>
+      <div class="mrow"><div class="mname">Binge rate</div><div class="mdef">Episodes per session. Narrative pull measure.</div></div>
+      <div class="mrow"><div class="mname">Drop-off episode</div><div class="mdef">Highest abandonment episode.</div></div>
+      <div class="mrow"><div class="mname">Re-watch rate</div><div class="mdef">% returning to episodes. Cult indicator.</div></div>
+      <div class="mrow"><div class="mname">New vs. returning split</div><div class="mdef">Measures reach beyond existing fanbase.</div></div>
+      <div class="mrow"><div class="mname">International binge parity</div><div class="mdef">Completion rate by territory vs. US.</div></div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-card-hdr"><div class="dim-icon">🎨</div><div class="dim-name">Promotional asset performance</div></div>
+      <div class="mrow"><div class="mname">Thumbnail A/B test lift</div><div class="mdef">CTR delta. Quantifies creative decisions.</div></div>
+      <div class="mrow"><div class="mname">Copy CTR variant</div><div class="mdef">Tests narrative framing in descriptions.</div></div>
+      <div class="mrow"><div class="mname">Push notification open rate</div><div class="mdef">Urgency messaging proxy.</div></div>
+      <div class="mrow"><div class="mname">Email merchandising CTR</div><div class="mdef">Off-platform promotional effectiveness.</div></div>
+      <div class="mrow"><div class="mname">Social clip view rate</div><div class="mdef">Cast + Netflix clip views. Organic proxy.</div></div>
+      <div class="mrow"><div class="mname">Pre-add to list rate</div><div class="mdef">Intent signal before availability.</div></div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-card-hdr"><div class="dim-icon">🗺️</div><div class="dim-name">Merchandising activation metrics</div></div>
+      <div class="mrow"><div class="mname">Homepage hero viewership lift</div><div class="mdef">Hero vs. row placement delta.</div></div>
+      <div class="mrow"><div class="mname">Algorithmic attribution rate</div><div class="mdef">% discovering OBX via recommendation.</div></div>
+      <div class="mrow"><div class="mname">Back-catalog pull-through</div><div class="mdef">S5 viewers who watch S1–S4.</div></div>
+      <div class="mrow"><div class="mname">Regional localization CTR variance</div><div class="mdef">Territory-specific vs. global default.</div></div>
+      <div class="mrow"><div class="mname">Row position decay rate</div><div class="mdef">CTR drop as OBX moves down homepage.</div></div>
+      <div class="mrow"><div class="mname">Cross-promo attribution</div><div class="mdef">OBX viewers engaging related titles.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S4: THUMBNAIL -->
+<div class="section">
+  <div class="sec-hdr"><span class="sec-num">04</span><h2 class="sec-title">Thumbnail Strategy Analysis</h2><div class="sec-rule"></div></div>
+  <p class="prose">Netflix runs thousands of A/B tests per title. OBX's thumbnail strategy follows observable patterns that a merchandising team would systematize across the franchise lifecycle.</p>
+
+  <div class="thumb-grid">
+    <div class="thumb-card"><div class="thumb-type">Variant A</div><div class="thumb-vis">👤</div><div class="thumb-driver">Character-led</div><div class="thumb-approach">Single protagonist, direct gaze, high contrast. New-to-franchise via algorithmic discovery.</div></div>
+    <div class="thumb-card"><div class="thumb-type">Variant B</div><div class="thumb-vis">⚡</div><div class="thumb-driver">Action / stakes</div><div class="thumb-approach">Physical tension, motion blur, coastal. Action fans and lapsed viewers.</div></div>
+    <div class="thumb-card"><div class="thumb-type">Variant C</div><div class="thumb-vis">👥</div><div class="thumb-driver">Ensemble</div><div class="thumb-approach">Core Pogue group, friendship framing. Existing fans for re-engagement.</div></div>
+    <div class="thumb-card"><div class="thumb-type">Variant D</div><div class="thumb-vis">📝</div><div class="thumb-driver">Text-forward</div><div class="thumb-approach">Show title prominent, season callout. Direct search, returning viewers.</div></div>
+    <div class="thumb-card"><div class="thumb-type">Variant E</div><div class="thumb-vis">🌍</div><div class="thumb-driver">International</div><div class="thumb-approach">Localized cast or landscape per territory. Non-US cultural relevance.</div></div>
+  </div>
+
+  <div class="h3">Priority A/B test hypothesis — Season 5 launch</div>
+  <div class="hyp">
+    <p><strong>Hypothesis:</strong> Character-led thumbnail (John B, direct gaze, emotional expression) will outperform ensemble shot for new-to-franchise viewer CTR by 15–25%.</p>
+    <p>Control: Ensemble group shot on beach (standard franchise default). Test: Single character close-up. Target: Viewers with no S1–S4 history. Measurement: CTR on title row, 7-day window. Expected lift: +15–25% based on comparable youth drama benchmarks.</p>
+  </div>
+
+  <div class="chart-wrap" style="height:160px">
+    <canvas id="thumbChart" role="img" aria-label="Bar chart comparing expected CTR lift across five thumbnail variants for new-to-franchise viewers. Character-led variant shows highest projected lift.">Thumbnail CTR lift estimates: Character-led 22%, Action 14%, Ensemble 8%, Text-forward 5%, International variant.</canvas>
+  </div>
+</div>
+
+<!-- S5: EXPERIMENTS -->
+<div class="section">
+  <div class="sec-hdr"><span class="sec-num">05</span><h2 class="sec-title">Experimentation Frameworks</h2><div class="sec-rule"></div></div>
+  <p class="prose">Two fully designed experiments for the OBX franchise — each with hypothesis, design, primary metrics, success threshold, and defined action if the test succeeds.</p>
+
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-hdr"><div class="exp-num">01</div><div><div class="exp-title">Cast social coordination impact on launch viewership</div><div class="exp-hypo">Does coordinated cast posting within 24 hours of drop meaningfully increase Day-1 viewership vs. uncoordinated posting?</div></div></div>
+      <div class="exp-body">
+        <div class="erow"><span class="ekey">Hypothesis</span><span class="eval">Coordinated cast posting within 2hr of Netflix drop increases Day-1 hours viewed by 8–15% vs. uncoordinated baseline</span></div>
+        <div class="erow"><span class="ekey">Control</span><span class="eval">Organic posting — no timing coordination. Baseline from S3/S4 launches.</span></div>
+        <div class="erow"><span class="ekey">Test</span><span class="eval">All main cast posts within 2hr of drop, aligned hashtag, Netflix-approved clip format</span></div>
+        <div class="erow"><span class="ekey">Primary metric</span><span class="eval">Day-1 hours viewed + trailer views within 48hr of drop</span></div>
+        <div class="erow"><span class="ekey">Window</span><span class="eval">7 days post-drop</span></div>
+        <div class="exp-success">✓ If successful: Create standardized Cast Launch Playbook — timing grid, format guide, hashtag protocol — applied to all future OBX seasons and comparable franchise titles.</div>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-hdr"><div class="exp-num">02</div><div><div class="exp-title">Regional thumbnail localization vs. global default</div><div class="exp-hypo">Does territory-specific thumbnail localization drive meaningful CTR improvement in OBX's top international markets?</div></div></div>
+      <div class="exp-body">
+        <div class="erow"><span class="ekey">Hypothesis</span><span class="eval">Localized thumbnails will outperform global default by 10–20% CTR in UK, Australia, and Brazil</span></div>
+        <div class="erow"><span class="ekey">Control</span><span class="eval">Global default thumbnail served to all territories</span></div>
+        <div class="erow"><span class="ekey">Test — UK/AUS</span><span class="eval">Coastal landscape + ensemble, aspirational adventure aesthetic</span></div>
+        <div class="erow"><span class="ekey">Test — Brazil</span><span class="eval">Relationship framing, warm color grade, John B + Sarah</span></div>
+        <div class="erow"><span class="ekey">Threshold</span><span class="eval">+10% CTR vs. global default in at least 2 of 3 territories</span></div>
+        <div class="exp-success">✓ If successful: Scale localized thumbnail production to top 8 OBX markets. Develop regional merchandising template per territory cluster.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S6: FOLLOW-ON -->
+<div class="section">
+  <div class="sec-hdr"><span class="sec-num">06</span><h2 class="sec-title">Recommended follow-on analyses</h2><div class="sec-rule"></div></div>
+  <div class="insight-grid">
+    <div class="insight-card"><div class="insight-n">01</div><div class="insight-title">UGC impact analysis</div><div class="insight-body">Quantify how fan-created content contributes to viewership lift in weeks surrounding the drop. Identify highest-signal UGC formats for amplification.</div></div>
+    <div class="insight-card"><div class="insight-n">02</div><div class="insight-title">Cast social ROI model</div><div class="insight-body">Build a model assigning viewership-hours multiplier per unit of cast social reach by platform — gives merchandising a quantitative basis for coordination investment.</div></div>
+    <div class="insight-card"><div class="insight-n">03</div><div class="insight-title">Back-catalog optimization</div><div class="insight-body">Analyze which S5 row placements most effectively drive S1–S4 re-watch. Build a recommendation row strategy to maximize franchise depth engagement.</div></div>
+    <div class="insight-card" style="border-right:1px solid var(--b)"><div class="insight-n">04</div><div class="insight-title">International market clustering</div><div class="insight-body">Group top 20 OBX markets by audience behavior profile — binge rate, completion rate, thumbnail CTR — to build localization clusters, not individual territory strategies.</div></div>
+    <div class="insight-card" style="border-right:1px solid var(--b)"><div class="insight-n">05</div><div class="insight-title">Episode-level drop-off analysis</div><div class="insight-body">Map completion rates across S1–S5 to identify narrative patterns correlated with abandonment. Feed findings into editorial feedback loops for S6.</div></div>
+    <div class="insight-card"><div class="insight-n">06</div><div class="insight-title">Promotional copy A/B framework</div><div class="insight-body">Test adventure vs. romance vs. mystery framing in title descriptions across audience segments. Copy testing is an underutilized lever for member-to-viewer conversion.</div></div>
+  </div>
+</div>
+
+<!-- S7: CAPABILITY SUMMARY -->
+<div class="section">
+  <div class="sec-hdr"><span class="sec-num">07</span><h2 class="sec-title">What this analysis demonstrates</h2><div class="sec-rule"></div></div>
+  <div class="sum-grid">
+    <div class="sum-row"><div class="sum-cell hdr left">Role requirement</div><div class="sum-cell hdr right">Demonstrated in this document</div></div>
+    <div class="sum-row"><div class="sum-cell left">Mastery of distribution metrics and concepts</div><div class="sum-cell right">Section 03: Full dashboard across <span class="hl">4 dimensions, 24+ defined metrics</span> with business rationale for each</div></div>
+    <div class="sum-row"><div class="sum-cell left">Translating data into stories and takeaways</div><div class="sum-cell right">Section 02: Promotional arc with per-phase KPIs; Section 04: Thumbnail strategy with <span class="hl">expected CTR lifts</span></div></div>
+    <div class="sum-row"><div class="sum-cell left">Developing experimentation frameworks</div><div class="sum-cell right">Section 05: <span class="hl">Two fully designed experiments</span> with hypothesis, design, metrics, threshold, and action plan</div></div>
+    <div class="sum-row"><div class="sum-cell left">Collaborative spirit across regions and functions</div><div class="sum-cell right">Section 01: Regional cast map; Section 04: <span class="hl">International thumbnail localization</span> framework by territory</div></div>
+    <div class="sum-row"><div class="sum-cell left">Self-service tooling and dashboard roadmaps</div><div class="sum-cell right">Section 03: Replicable dashboard framework designed for <span class="hl">stakeholder self-service</span> across all franchise titles</div></div>
+    <div class="sum-row"><div class="sum-cell left">Genuine interest in Netflix content and business</div><div class="sum-cell right">Signal & Frame creator intelligence methodology applied directly to Netflix's most valuable <span class="hl">youth franchise</span></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="foot-brand">SIGNAL & FRAME</div>
+  <div class="foot-meta">Title Distribution, Promotion &amp; Merchandising Analysis<br>signalandframe.studio</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+const txt = dark ? '#c2c0b6' : '#3d3d3a';
+const muted = dark ? '#73726c' : '#888780';
+const grid = dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+
+// Arc chart
+new Chart(document.getElementById('arcChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Awareness','Consideration','Launch','Retention','Long Tail'],
+    datasets: [{
+      label: 'Relative viewership impact',
+      data: [15, 35, 100, 55, 28],
+      backgroundColor: ['rgba(229,9,20,0.2)','rgba(229,9,20,0.35)','rgba(229,9,20,0.85)','rgba(229,9,20,0.45)','rgba(229,9,20,0.25)'],
+      borderColor: ['#E50914','#E50914','#E50914','#E50914','#E50914'],
+      borderWidth: 1,
+      borderRadius: 3,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' Relative impact index: ' + ctx.raw } } },
+    scales: {
+      x: { grid: { color: grid }, ticks: { color: muted, font: { size: 11 } } },
+      y: { grid: { color: grid }, ticks: { color: muted, font: { size: 11 } }, title: { display: true, text: 'Viewership impact index', color: muted, font: { size: 10 } } }
+    }
+  }
+});
+
+// Thumbnail CTR chart
+new Chart(document.getElementById('thumbChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Character-led','Action/Stakes','Ensemble','Text-forward','International'],
+    datasets: [{
+      label: 'Projected CTR lift % (new-to-franchise)',
+      data: [22, 14, 8, 5, 11],
+      backgroundColor: ['rgba(229,9,20,0.85)','rgba(229,9,20,0.55)','rgba(229,9,20,0.35)','rgba(229,9,20,0.2)','rgba(229,9,20,0.45)'],
+      borderColor: '#E50914',
+      borderWidth: 1,
+      borderRadius: 3,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' Projected CTR lift: +' + ctx.raw + '%' } } },
+    scales: {
+      x: { grid: { color: grid }, ticks: { color: muted, font: { size: 11 }, callback: v => '+' + v + '%' } },
+      y: { grid: { color: grid }, ticks: { color: muted, font: { size: 11 } } }
+    }
+  }
+});
+</script>
+</body>
+</html>
