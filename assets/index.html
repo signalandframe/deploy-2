@@ -437,7 +437,7 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
 .hero-vid,.reel-media{position:absolute;inset:0;overflow:hidden;container-type:size;pointer-events:none}
 .yt{opacity:0;transition:opacity .8s ease;position:absolute;top:50%;left:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.42);border:0;pointer-events:none}
 .yt.on{opacity:1}
-.lv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.lv{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:block;pointer-events:none}
 .hero-vid::after,.reel-media::after{content:'';position:absolute;inset:0;z-index:2}
 .hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,10,9,.55),rgba(10,10,9,.05) 30%,rgba(10,10,9,.05) 60%,rgba(10,10,9,.75));pointer-events:none}
 .hero-nav{z-index:3}
@@ -449,7 +449,7 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
 .hero-scroll span{color:var(--fg)}
 .reels{position:relative;display:grid;grid-template-columns:34fr 30fr 34fr;gap:6px;padding:6px;height:min(78vh,720px);background:var(--bg)}
 .reel{position:relative;overflow:hidden;background:#111110;border:1px solid rgba(240,237,230,.06)}
-.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:block}
 .reel-cap{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(to top,rgba(10,10,9,.85),transparent);font-family:var(--body);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,237,230,.8)}
 @media (max-width:768px){.hero{height:88vh}.hero-meta{flex-direction:column;padding:4px 16px 0;font-size:9px}.hero-meta div:last-child{text-align:left !important}.hero-scroll{right:16px;bottom:16px}.reels{grid-template-columns:1fr;height:auto}.reel{height:62vh}}
 .pub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:36px}
@@ -482,8 +482,8 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
 @media (max-width:900px){.pub-collage{grid-template-columns:1fr;height:auto}.pc-a{grid-row:auto}.pc-a .pc-img{min-height:360px}.pc-img{min-height:320px}}
 .ed-grid{--ed-bleed:46px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px;align-items:start;width:calc(100% + 2*var(--ed-bleed,0px));margin-left:calc(-1*var(--ed-bleed,0px))}
 .ed{display:flex;flex-direction:column;min-width:0;color:var(--fg)}
-.ed-img{width:100%;aspect-ratio:4/5;overflow:hidden;background:#111110}
-.ed-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.ed-img{width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--bg)}
+.ed-img img{width:100%;height:100%;object-fit:contain;display:block;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
 .ed:hover .ed-img img{transform:scale(1.02)}
 .ed-kick{display:flex;flex-direction:column;gap:2px;margin-top:22px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;font-weight:400;letter-spacing:.04em;line-height:1.5;text-transform:uppercase;color:var(--fg)}
 .ed-title{margin-top:18px;font-family:var(--body);font-weight:400;font-size:clamp(28px,2.9vw,44px);line-height:1.04;letter-spacing:-.02em;text-wrap:balance;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:7px;text-decoration-thickness:1.5px;transition:text-decoration-color .3s}
@@ -501,7 +501,7 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
 <!-- ══════════════════ HOME ══════════════════ -->
 <div id="home">
 <section class="hero">
-<div class="hero-vid"><video class="lv" src="assets/intro.mp4" data-yt="JQPWBlTULko" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="hero-vid"><video class="lv" src="assets/intro.mp4" autoplay muted loop playsinline preload="auto"></video></div>
 <div class="hero-shade"></div>
 <nav class="top-nav hero-nav">
 <div class="pill active" onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</div>
@@ -519,9 +519,9 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
 <div class="home-scroll hero-scroll" onclick="goTo('reels')"><div class="hsl"></div><span>Scroll</span></div>
 </section>
 <section id="reels" class="reels">
-<div class="reel r-left"><div class="reel-media"><video class="lv" src="assets/jasper-ss27.mp4" data-yt="Pvb46LNCZq0" autoplay muted loop playsinline preload="auto"></video></div><div class="reel-cap">Jasper · SS27</div></div>
-<div class="reel r-center"><video id="bv1" src="assets/do-that-again.mp4" autoplay muted loop playsinline preload="auto"></video><div class="reel-cap">Do That Again</div></div>
-<div class="reel r-right"><div class="reel-media"><video class="lv" src="assets/max-esmail-ss27.mp4" data-yt="g-8Dd2h7Q_Y" autoplay muted loop playsinline preload="auto"></video></div><div class="reel-cap">Max Esmail · SS27</div></div>
+<div class="reel r-left"><div class="reel-media"><video class="lv" src="assets/jasper-ss27.mp4" autoplay muted loop playsinline preload="auto"></video></div><div class="reel-cap">Jasper · SS27</div></div>
+<div class="reel r-center"><video id="bv1" src="assets/Do%20that%20again.mp4" autoplay muted loop playsinline preload="auto"></video><div class="reel-cap">Do That Again</div></div>
+<div class="reel r-right"><div class="reel-media"><video class="lv" src="assets/max-esmail-ss27.mp4" autoplay muted loop playsinline preload="auto"></video></div><div class="reel-cap">Max Esmail · SS27</div></div>
 </section>
 </div>
 
@@ -652,9 +652,9 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
 
   <div class="cs-eyebrow rv"><b>§ Writing &amp; Social</b><i></i><em>Signal Publication · Substack</em></div>
   <div class="ed-grid rv">
-<a class="ed ed-1" href="https://signalandframe.substack.com/p/our-niche-little-artist-became-a" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/pub-malcom.png" alt="Malcom Todd" style="object-position:52% center" /></div><div class="ed-kick"><span>Music</span><span>Malcom Todd</span></div><h3 class="ed-title">Our Niche Little Artist Became a Popstar</h3><p class="ed-desc">Malcom Todd has the sounds of the summer. He has a Gap ad. He has a VMA nomination.</p></a>
-<a class="ed ed-2" href="https://substack.com/home/post/p-216438367" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/pub-ian-full.webp" alt="Ian · Gap x A.P.C." style="object-position:44% center" /></div><div class="ed-kick"><span>Film</span><span>Ian · Gap x A.P.C.</span></div><h3 class="ed-title">Ian Makes His Acting Debut in a Nod to French New Wave Cinema</h3><p class="ed-desc">Ian and Paloma Le Friant star in Gap x A.P.C.'s breathless homage: "The Long Way."</p></a>
-<a class="ed ed-3" href="https://signalandframe.substack.com/p/god-would-see-it-max-esmail-and-the" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/pub-max-full.jpg" alt="Max Esmail" style="object-position:center center" /></div><div class="ed-kick"><span>Fashion</span><span>Max Esmail</span></div><h3 class="ed-title">God Would See It: Max Esmail and the Art of Internal Construction</h3><p class="ed-desc">A look at Max Esmail's Spring / Summer 2027 collection "God Would See It," Chapter 1.</p></a>
+<a class="ed ed-1" href="https://signalandframe.substack.com/p/our-niche-little-artist-became-a" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/malcom.jpeg" alt="Malcom Todd" style="object-position:52% center" /></div><div class="ed-kick"><span>Music</span><span>Malcom Todd</span></div><h3 class="ed-title">Our Niche Little Artist Became a Popstar</h3><p class="ed-desc">Malcom Todd has the sounds of the summer. He has a Gap ad. He has a VMA nomination.</p></a>
+<a class="ed ed-2" href="https://substack.com/home/post/p-216438367" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/ian%20gap.webp" alt="Ian · Gap x A.P.C." style="object-position:44% center" /></div><div class="ed-kick"><span>Film</span><span>Ian · Gap x A.P.C.</span></div><h3 class="ed-title">Ian Makes His Acting Debut in a Nod to French New Wave Cinema</h3><p class="ed-desc">Ian and Paloma Le Friant star in Gap x A.P.C.'s breathless homage: "The Long Way."</p></a>
+<a class="ed ed-3" href="https://signalandframe.substack.com/p/god-would-see-it-max-esmail-and-the" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/IMG_4295.jpg" alt="Max Esmail" style="object-position:center center" /></div><div class="ed-kick"><span>Fashion</span><span>Max Esmail</span></div><h3 class="ed-title">God Would See It: Max Esmail and the Art of Internal Construction</h3><p class="ed-desc">A look at Max Esmail's Spring / Summer 2027 collection "God Would See It," Chapter 1.</p></a>
   </div>
   <div class="socials rv"><a href="https://substack.com/@signalandframe" target="_blank" rel="noopener">Substack ↗</a><a href="https://www.instagram.com/signalandframestudio/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.tiktok.com/@signalandframe" target="_blank" rel="noopener">TikTok ↗</a><a href="mailto:signalandframe@gmail.com">Email ↗</a></div>
 </section>
@@ -1313,15 +1313,10 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
 
 <script>
-(function(){
-var q=[],ready=false,o=/^https?:/.test(location.origin)?'&origin='+encodeURIComponent(location.origin):'';
-function yt(v){var id=v.dataset.yt,f=document.createElement('iframe');f.className='yt';f.id='yt-'+id;f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture');f.setAttribute('tabindex','-1');f.setAttribute('frameborder','0');
-f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1'+o;
-v.replaceWith(f);q.push(f);load();if(ready)bind(f);}
-function bind(f){new YT.Player(f.id,{events:{onReady:function(e){e.target.mute();e.target.playVideo();},onStateChange:function(e){if(e.data===1)f.classList.add('on');if(e.data===0){e.target.seekTo(0);e.target.playVideo();}if(e.data===2||e.data===5)e.target.playVideo();}}});}
-var loading=false;function load(){if(loading)return;loading=true;window.onYouTubeIframeAPIReady=function(){ready=true;q.forEach(bind);};var t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t);}
-document.querySelectorAll('video.lv').forEach(function(v){v.addEventListener('error',function(){yt(v);},true);if(v.error||v.networkState===3)yt(v);var p=v.play();if(p&&p.catch)p.catch(function(){});});
-})();
+document.querySelectorAll('video').forEach(function(v){v.muted=true;v.defaultMuted=true;v.playsInline=true;v.removeAttribute('controls');v.disablePictureInPicture=true;v.setAttribute('disableremoteplayback','');
+var go=function(){var p=v.play();if(p&&p.catch)p.catch(function(){});};go();v.addEventListener('pause',function(){if(!document.hidden)setTimeout(go,50);});v.addEventListener('ended',function(){v.currentTime=0;go();});});
+['touchstart','click','scroll'].forEach(function(t){window.addEventListener(t,function(){document.querySelectorAll('video').forEach(function(v){if(v.paused){var p=v.play();if(p&&p.catch)p.catch(function(){});}});},{once:true,passive:true});});
 </script>
+<style>video::-webkit-media-controls,video::-webkit-media-controls-start-playback-button,video::-webkit-media-controls-overlay-play-button{display:none !important;-webkit-appearance:none}</style>
 </body>
 </html>
