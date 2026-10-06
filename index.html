@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Signal & Frame</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Barlow:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700;1,800&family=IBM+Plex+Mono:wght@400&family=Barlow:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -431,92 +432,97 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
   .mif-head{height:300px}
 }
 </style>
+<style>
+.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;background:#0A0A09;display:flex;flex-direction:column}
+.hero-vid,.reel-media{position:absolute;inset:0;overflow:hidden;container-type:size;pointer-events:none}
+.yt{opacity:0;transition:opacity .8s ease;position:absolute;top:50%;left:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.42);border:0;pointer-events:none}
+.yt.on{opacity:1}
+.lv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.hero-vid::after,.reel-media::after{content:'';position:absolute;inset:0;z-index:2}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,10,9,.55),rgba(10,10,9,.05) 30%,rgba(10,10,9,.05) 60%,rgba(10,10,9,.75));pointer-events:none}
+.hero-nav{z-index:3}
+.hero-nav .pill{color:var(--fg);border-color:rgba(240,237,230,.35);background:rgba(10,10,9,.25);backdrop-filter:blur(6px)}
+.hero-nav .pill:hover,.hero-nav .pill.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.hero-meta{position:relative;z-index:3;display:flex;justify-content:space-between;gap:24px;padding:6px 28px 0;font-family:var(--body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);line-height:1.7}
+.hero-title{position:relative;z-index:3;margin-top:auto;padding:0 16px 8px;display:flex;flex-direction:column}
+.hero-scroll{position:absolute;z-index:3;right:28px;top:26%;padding:0}
+.hero-scroll span{color:var(--fg)}
+.reels{position:relative;display:grid;grid-template-columns:34fr 30fr 34fr;gap:6px;padding:6px;height:min(78vh,720px);background:var(--bg)}
+.reel{position:relative;overflow:hidden;background:#111110;border:1px solid rgba(240,237,230,.06)}
+.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.reel-cap{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(to top,rgba(10,10,9,.85),transparent);font-family:var(--body);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,237,230,.8)}
+@media (max-width:768px){.hero{height:88vh}.hero-meta{flex-direction:column;padding:4px 16px 0;font-size:9px}.hero-meta div:last-child{text-align:left !important}.hero-scroll{right:16px;bottom:16px}.reels{grid-template-columns:1fr;height:auto}.reel{height:62vh}}
+.pub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:36px}
+.pub-card{border:1px solid var(--border);background:#0e0e0d;display:flex;flex-direction:column;overflow:hidden}
+.pub-card iframe{display:block;width:100%;border:0;background:#fff}
+.pub-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border)}
+.pub-head b{font-family:var(--disp);font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+.pub-head a{font-family:var(--body);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg);border:1px solid var(--dim);border-radius:100px;padding:8px 14px;white-space:nowrap;transition:background .2s,color .2s}
+.pub-head a:hover{background:var(--fg);color:var(--bg)}
+.pub-body{padding:26px 24px;display:flex;flex-direction:column;flex:1}
+.pub-story{display:flex;flex-direction:column;border:1px solid var(--border);background:#0e0e0d;overflow:hidden;transition:border-color .3s,transform .3s}
+.pub-story:hover{border-color:rgba(240,237,230,.26);transform:translateY(-4px)}
+.pub-img{aspect-ratio:4/5;overflow:hidden}
+.pub-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.pub-story:hover .pub-img img{transform:scale(1.04)}
+.pub-credit{margin-top:auto;padding-top:18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--body);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid)}
+.pub-credit span{color:var(--fg)}
+.pub-collage{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;height:clamp(640px,62vw,860px);gap:28px 24px;margin-top:36px}
+.pc{display:flex;flex-direction:column;gap:16px;min-width:0;min-height:0}
+.pc-a{grid-row:1 / span 2}
+.pc-text{display:flex;flex-direction:column;gap:8px}
+.pc-kick{font-family:var(--body);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)}
+.pc-title{font-family:var(--disp);font-size:clamp(24px,2.4vw,36px);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-.01em;text-wrap:pretty}
+.pc-title em{font-style:italic;color:var(--mid)}
+.pc-img{position:relative;flex:1;min-height:300px;overflow:hidden;border:1px solid var(--border);background:#0f0f0e}
+.pc-a .pc-img{min-height:0}
+.pc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.pc:hover .pc-img img{transform:scale(1.04)}
+.pc:hover .pc-title{color:var(--fg)}
+@media (max-width:900px){.pub-collage{grid-template-columns:1fr;height:auto}.pc-a{grid-row:auto}.pc-a .pc-img{min-height:360px}.pc-img{min-height:320px}}
+.ed-grid{--ed-bleed:46px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px;align-items:start;width:calc(100% + 2*var(--ed-bleed,0px));margin-left:calc(-1*var(--ed-bleed,0px))}
+.ed{display:flex;flex-direction:column;min-width:0;color:var(--fg)}
+.ed-img{width:100%;aspect-ratio:4/5;overflow:hidden;background:#111110}
+.ed-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.ed:hover .ed-img img{transform:scale(1.02)}
+.ed-kick{display:flex;flex-direction:column;gap:2px;margin-top:22px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;font-weight:400;letter-spacing:.04em;line-height:1.5;text-transform:uppercase;color:var(--fg)}
+.ed-title{margin-top:18px;font-family:var(--body);font-weight:400;font-size:clamp(28px,2.9vw,44px);line-height:1.04;letter-spacing:-.02em;text-wrap:balance;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:7px;text-decoration-thickness:1.5px;transition:text-decoration-color .3s}
+.ed:hover .ed-title{text-decoration-color:var(--fg)}
+.ed-desc{margin-top:16px;max-width:42ch;font-family:var(--body);font-weight:400;font-size:16px;line-height:1.5;color:var(--fg);text-wrap:pretty}
+@media (max-width:900px){.ed-grid{grid-template-columns:1fr;gap:44px;--ed-bleed:0px}}
+.socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px;padding-top:28px;border-top:1px solid var(--border)}
+.socials a{font-family:var(--body);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);border:1px solid var(--dim);border-radius:100px;padding:10px 18px;transition:background .2s,color .2s}
+.socials a:hover{background:var(--fg);color:var(--bg)}
+@media (max-width:1000px){.pub-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
 <!-- ══════════════════ HOME ══════════════════ -->
 <div id="home">
-  <nav class="top-nav">
-    <div class="pill active" onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</div>
-    <div class="pill" onclick="goTo('work')">Work</div>
-    <div class="pill" onclick="goTo('may')">May In Frame</div>
-    <div class="pill" onclick="goTo('analytics')">Analytics</div>
-    <div class="pill" onclick="goTo('attn')">Attention Economy</div>
-    <div class="pill" onclick="goTo('film')">Film</div>
-    <div class="pill" onclick="goTo('acting')">Acting</div>
-    <div class="pill" onclick="goTo('bio')">About</div>
-    <div class="pill" onclick="goTo('contact')">Contact</div>
-  </nav>
-
-  <!-- Top bar: welcome left, taglines right -->
-  <div style="position:relative;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:6px 28px 0">
-    <div class="home-welcome" style="padding:0">Welcome to the World of<br/>Signal &amp; Frame</div>
-    <div style="text-align:right;font-family:var(--body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);line-height:1.7">
-      The center of cultural intelligence<br/>
-      New gen marketing and brand strategy<br/>
-      Independent productions
-    </div>
-  </div>
-  <div class="home-name-wrap">
-    <span class="home-name">SIGNAL</span>
-    <span class="home-name">&amp; FRAME</span>
-  </div>
-
-  <!-- COLLAGE -->
-  <div class="collage">
-
-    <!-- VIDEO SLOT 1 — center, behind the name (permanent loop) -->
-    <div class="vs" id="vs1" style="left:35%;top:0;width:30%;height:340px;border-style:solid;">
-      <video id="bv1" class="on" src="assets/home-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
-    </div>
-
-    <!-- VIDEO SLOT 2 — stacked below slot 1 (permanent loop) -->
-    <div class="vs" id="vs2" style="left:35%;top:345px;width:30%;height:190px;border-style:solid;">
-      <video id="bv2" class="on" src="assets/everything-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
-    </div>
-
-    <!-- Speed — tall far left -->
-    <div class="ci" style="left:0;top:10px;width:19%;height:420px;">
-      <img src="assets/speed.jpg" alt="Speed" style="object-position:top center" />
-      <div class="ci-cap">Speed · IShowSpeed</div>
-    </div>
-
-    <!-- Prime — left of video slot -->
-    <div class="ci" style="left:20%;top:20px;width:14%;height:300px;">
-      <img src="assets/prime-new.png" alt="Prime" style="object-position:top center" />
-      <div class="ci-cap">Prime · Logan Paul &amp; KSI</div>
-    </div>
-
-    <!-- Gstaad Guy chain — below Prime -->
-    <div class="ci" style="left:20%;top:330px;width:14%;height:300px;">
-      <img src="assets/gstaad-chain-new.png" alt="Gstaad Guy" style="object-position:top center" />
-      <div class="ci-cap">Gstaad Guy · @gstaadguy</div>
-    </div>
-
-    <!-- Jake Paul vs Tyson — top right of video -->
-    <div class="ci" style="left:66%;top:0;width:33%;height:240px;">
-      <img src="assets/jake-box.png" alt="Jake Paul vs Mike Tyson" style="object-position:center center" />
-      <div class="ci-cap">Jake Paul vs Mike Tyson · Netflix</div>
-    </div>
-
-    <!-- Timothée Chalamet — bottom right of video, left of slot 2 -->
-    <div class="ci" style="left:66%;top:245px;width:13%;height:300px;">
-      <img src="assets/timothee.png" alt="Timothée Chalamet" style="object-position:top center" />
-      <div class="ci-cap">Timothée Chalamet</div>
-    </div>
-
-    <!-- Emma Chamberlain Coffee — bottom right -->
-    <div class="ci" style="right:0;bottom:0;width:21%;height:270px;">
-      <img src="assets/emma-coffee.png" alt="Emma Chamberlain Coffee" style="object-position:top center" />
-      <div class="ci-cap">Emma Chamberlain · Chamberlain Coffee</div>
-    </div>
-
-  </div>
-
-  <div class="home-scroll" onclick="goTo('bio')">
-    <div class="hsl"></div>
-    <span>Scroll</span>
-  </div>
+<section class="hero">
+<div class="hero-vid"><video class="lv" src="assets/intro.mp4" data-yt="JQPWBlTULko" autoplay muted loop playsinline preload="auto"></video></div>
+<div class="hero-shade"></div>
+<nav class="top-nav hero-nav">
+<div class="pill active" onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</div>
+<div class="pill" onclick="goTo('work')">Work</div>
+<div class="pill" onclick="goTo('may')">May In Frame</div>
+<div class="pill" onclick="goTo('analytics')">Analytics</div>
+<div class="pill" onclick="goTo('attn')">Attention Economy</div>
+<div class="pill" onclick="goTo('film')">Film</div>
+<div class="pill" onclick="goTo('acting')">Acting</div>
+<div class="pill" onclick="goTo('bio')">About</div>
+<div class="pill" onclick="goTo('contact')">Contact</div>
+</nav>
+<div class="hero-meta"><div>Welcome to the World of<br/>Signal &amp; Frame</div><div style="text-align:right">The center of cultural intelligence<br/>New gen marketing and brand strategy<br/>Independent productions</div></div>
+<div class="hero-title"><span class="home-name">SIGNAL</span><span class="home-name">&amp; FRAME</span></div>
+<div class="home-scroll hero-scroll" onclick="goTo('reels')"><div class="hsl"></div><span>Scroll</span></div>
+</section>
+<section id="reels" class="reels">
+<div class="reel r-left"><div class="reel-media"><video class="lv" src="assets/jasper-ss27.mp4" data-yt="Pvb46LNCZq0" autoplay muted loop playsinline preload="auto"></video></div><div class="reel-cap">Jasper · SS27</div></div>
+<div class="reel r-center"><video id="bv1" src="assets/do-that-again.mp4" autoplay muted loop playsinline preload="auto"></video><div class="reel-cap">Do That Again</div></div>
+<div class="reel r-right"><div class="reel-media"><video class="lv" src="assets/max-esmail-ss27.mp4" data-yt="g-8Dd2h7Q_Y" autoplay muted loop playsinline preload="auto"></video></div><div class="reel-cap">Max Esmail · SS27</div></div>
+</section>
 </div>
 
 <!-- STICKY NAV -->
@@ -643,6 +649,14 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
     </article>
 
   </div>
+
+  <div class="cs-eyebrow rv"><b>§ Writing &amp; Social</b><i></i><em>Signal Publication · Substack</em></div>
+  <div class="ed-grid rv">
+<a class="ed ed-1" href="https://signalandframe.substack.com/p/our-niche-little-artist-became-a" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/pub-malcom.png" alt="Malcom Todd" style="object-position:52% center" /></div><div class="ed-kick"><span>Music</span><span>Malcom Todd</span></div><h3 class="ed-title">Our Niche Little Artist Became a Popstar</h3><p class="ed-desc">Malcom Todd has the sounds of the summer. He has a Gap ad. He has a VMA nomination.</p></a>
+<a class="ed ed-2" href="https://substack.com/home/post/p-216438367" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/pub-ian-full.webp" alt="Ian · Gap x A.P.C." style="object-position:44% center" /></div><div class="ed-kick"><span>Film</span><span>Ian · Gap x A.P.C.</span></div><h3 class="ed-title">Ian Makes His Acting Debut in a Nod to French New Wave Cinema</h3><p class="ed-desc">Ian and Paloma Le Friant star in Gap x A.P.C.'s breathless homage: "The Long Way."</p></a>
+<a class="ed ed-3" href="https://signalandframe.substack.com/p/god-would-see-it-max-esmail-and-the" target="_blank" rel="noopener"><div class="ed-img" ><img src="assets/pub-max-full.jpg" alt="Max Esmail" style="object-position:center center" /></div><div class="ed-kick"><span>Fashion</span><span>Max Esmail</span></div><h3 class="ed-title">God Would See It: Max Esmail and the Art of Internal Construction</h3><p class="ed-desc">A look at Max Esmail's Spring / Summer 2027 collection "God Would See It," Chapter 1.</p></a>
+  </div>
+  <div class="socials rv"><a href="https://substack.com/@signalandframe" target="_blank" rel="noopener">Substack ↗</a><a href="https://www.instagram.com/signalandframestudio/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.tiktok.com/@signalandframe" target="_blank" rel="noopener">TikTok ↗</a><a href="mailto:signalandframe@gmail.com">Email ↗</a></div>
 </section>
 
 <!-- ══════════════════ ANALYTICS ══════════════════ -->
@@ -1037,6 +1051,9 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;align-i
   <div class="eyebrow rv">06 · Contact</div>
   <div class="c-title rv">Let's<br/><em>Work</em><br/>Together.</div>
   <div class="rv d1" style="max-width:560px">
+    <a class="c-row" href="https://substack.com/@signalandframe" target="_blank"><div><div class="c-lbl">Substack</div><div class="c-val">@signalandframe</div></div><div class="c-arr">↗</div></a>
+    <a class="c-row" href="https://www.instagram.com/signalandframestudio/" target="_blank"><div><div class="c-lbl">Instagram</div><div class="c-val">@signalandframestudio</div></div><div class="c-arr">↗</div></a>
+    <a class="c-row" href="https://www.tiktok.com/@signalandframe" target="_blank"><div><div class="c-lbl">TikTok</div><div class="c-val">@signalandframe</div></div><div class="c-arr">↗</div></a>
     <a class="c-row" href="mailto:signalandframe@gmail.com"><div><div class="c-lbl">Email</div><div class="c-val">signalandframe@gmail.com</div></div><div class="c-arr">↗</div></a>
     <a class="c-row" href="https://resumes.actorsaccess.com/2705432-7344709" target="_blank"><div><div class="c-lbl">Actors Access</div><div class="c-val">Jay Miglani</div></div><div class="c-arr">↗</div></a>
     <a class="c-row" href="https://app.castingnetworks.com/talent/public-profile/409d12b0-fcc0-11f0-b885-eb16738bc8b3" target="_blank"><div><div class="c-lbl">Casting Networks</div><div class="c-val">Jay Miglani</div></div><div class="c-arr">↗</div></a>
@@ -1281,7 +1298,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
 /* ensure embedded background videos always autoplay + loop */
 (function(){
-  const vids = ['bv1','bv2','may-bv','drake-bv','attn-bv'].map(id=>document.getElementById(id)).filter(Boolean);
+  const vids = ['bv1','may-bv','drake-bv','attn-bv'].map(id=>document.getElementById(id)).filter(Boolean);
   function kick(v){ v.muted = true; v.loop = true; const p = v.play(); if (p && p.catch) p.catch(()=>{}); }
   vids.forEach(v=>{
     kick(v);
@@ -1291,6 +1308,19 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
   const vo = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) kick(e.target); }), {threshold:0.01});
   vids.forEach(v=>vo.observe(v));
   document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) vids.forEach(kick); });
+})();
+</script>
+
+
+<script>
+(function(){
+var q=[],ready=false,o=/^https?:/.test(location.origin)?'&origin='+encodeURIComponent(location.origin):'';
+function yt(v){var id=v.dataset.yt,f=document.createElement('iframe');f.className='yt';f.id='yt-'+id;f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture');f.setAttribute('tabindex','-1');f.setAttribute('frameborder','0');
+f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1'+o;
+v.replaceWith(f);q.push(f);load();if(ready)bind(f);}
+function bind(f){new YT.Player(f.id,{events:{onReady:function(e){e.target.mute();e.target.playVideo();},onStateChange:function(e){if(e.data===1)f.classList.add('on');if(e.data===0){e.target.seekTo(0);e.target.playVideo();}if(e.data===2||e.data===5)e.target.playVideo();}}});}
+var loading=false;function load(){if(loading)return;loading=true;window.onYouTubeIframeAPIReady=function(){ready=true;q.forEach(bind);};var t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';document.head.appendChild(t);}
+document.querySelectorAll('video.lv').forEach(function(v){v.addEventListener('error',function(){yt(v);},true);if(v.error||v.networkState===3)yt(v);var p=v.play();if(p&&p.catch)p.catch(function(){});});
 })();
 </script>
 </body>
